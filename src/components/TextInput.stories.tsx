@@ -1,45 +1,54 @@
-import { TextInput, TextInputRootProps } from "./TextInput";
 import { Meta, StoryObj } from '@storybook/react'
-import { Envelope } from "phosphor-react";
-
+import { Text, TextProps } from './Text'
 
 export default {
-    title: 'Components/TextInput',
-    component: TextInput.Root,
-    args: {
-        children: (
-            <>
-                <TextInput.Icon>
-                    <Envelope />
-                </TextInput.Icon>
-                <TextInput.Input placeholder="Type your email address" />
-            </>
-        )
-    },
-    argTypes: {}
-
-} as Meta<TextInputRootProps>;
-
-export const Default: StoryObj<TextInputRootProps> = {
-
-    argTypes: {
-        children: {
-            table: {
-                disable: true,
-            }
-        }
+  title: 'Components/Text',
+  component: Text,
+  args: {
+    children: 'Lorem ipsum.',
+    size: 'md',
+  },
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio'
+      }
     }
+  }
+} as Meta<TextProps>
+
+export const Default: StoryObj<TextProps> = {}
+
+export const Small: StoryObj<TextProps> = {
+  args: {
+    size: 'sm'
+  }
 }
 
-export const withOutEnvelop: StoryObj<TextInputRootProps> = {
-    args: {
-        children: <TextInput.Input placeholder="Type your email address" />
+export const Large: StoryObj<TextProps> = {
+  args: {
+    size: 'lg'
+  }
+}
+
+export const CustomComponent: StoryObj<TextProps> = {
+  args: {
+    asChild: true,
+    children: (
+      <p>Text with P tag</p>
+    )
+  },
+  argTypes: {
+    children: {
+      table: {
+        disable: true,
+      }
     },
-    argTypes: {
-        children: {
-            table: {
-                disable: true,
-            }
-        }
+    asChild: {
+      table: {
+        disable: true,
+      }
     }
+  }
 }
